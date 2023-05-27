@@ -2,7 +2,7 @@
 from customtkinter import *
 root = CTk()
 root.config(background= "#284F74")
-root.geometry("350x470")
+root.geometry("345x470")
 root.resizable(False,False)
 root.title("Calculator by aviorian")
 
@@ -30,6 +30,7 @@ def clear_all():
     global second_value
 
     entry_box.delete(0,END)
+    entry_box_secondary.delete(0,END)
     first_value = "0"
     second_value ="0"
 
@@ -41,9 +42,10 @@ def operator(sign:str):
     
     if entry_box.get() != "":
         entry_box.insert(END,sign)
-
+        
         if first_value == "0":
             first_value = entry_box.get()
+            entry_box_secondary.insert(END,first_value)
         else :
             first_value_without_operator = (first_value[0:-1])
             second_value = entry_box.get()
@@ -59,8 +61,12 @@ def operator(sign:str):
                 first_value = float(first_value_without_operator) / float(second_value_without_operator)
 
             first_value = str(first_value) + second_value[-1]
+            entry_box_secondary.insert(END,second_value)
+
+            
 
     entry_box.delete(0,END)
+    
 
 
 def equal():
@@ -83,11 +89,13 @@ def equal():
             first_value = float(first_value_without_operator) / float(second_value)
 
         entry_box.delete(0,END)
+        entry_box_secondary.insert(END,second_value+"=  ")
         entry_box.insert(0,str(first_value))
+
         
 
-
-entry_box = CTkEntry(root,width=255,height=70,font=(None,27), corner_radius=5,text_color="orange")
+entry_box_secondary = CTkEntry(root,width=255,height=15,font=(None,15), corner_radius=5,text_color="white")
+entry_box = CTkEntry(root,width=255,height=50,font=(None,27), corner_radius=5,text_color="orange")
 button_1 = CTkButton(root,text="1",fg_color="#081717",hover_color="#202e2e" ,text_color="orange", width=80,height=70,command=lambda: numerical_button(1))
 button_2 = CTkButton(root,text="2",fg_color="#081717",hover_color="#202e2e" ,text_color="orange" ,width=80,height=70,command=lambda: numerical_button(2))
 button_3 = CTkButton(root,text="3",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,command=lambda: numerical_button(3))
@@ -109,7 +117,8 @@ button_clear_all=CTkButton(root,text="C",fg_color="#394545",text_color="yellow",
 
 label = CTkLabel(root,text="Don't forget press 'C'" + "\n" + " after using '='.",text_color="orange",bg_color="#284F74")
 
-entry_box.place(x=0,y=5)
+entry_box_secondary.place(x=0,y=0)
+entry_box.place(x=0,y=25)
 
 button_7.place(x=5,y=80)
 button_4.place(x=5,y=155)
