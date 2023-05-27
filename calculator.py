@@ -8,6 +8,8 @@ root.title("Calculator by aviorian")
 
 first_value = "0"
 second_value = "0"
+equal_amount = 0
+first_value_operator = ""
 
 
 
@@ -28,11 +30,13 @@ def clear_all():
     
     global first_value
     global second_value
+    global equal_amount
 
     entry_box.delete(0,END)
     entry_box_secondary.delete(0,END)
     first_value = "0"
     second_value ="0"
+    equal_amount=0
 
 
 def operator(sign:str):
@@ -73,24 +77,47 @@ def equal():
 
     global first_value
     global second_value
+    global equal_amount
+    global first_value_operator
 
 
     if entry_box.get() != "":
-        first_value_without_operator = (first_value[0:-1])
-        second_value = entry_box.get()
+        
+        if equal_amount<1:
+        
+            first_value_without_operator = (first_value[0:-1])
+            first_value_operator = first_value[-1]
+            second_value = entry_box.get()
+            
 
-        if first_value[-1]=="+":
-           first_value = float(first_value_without_operator) + float(second_value)
-        elif first_value[-1] == "-":
-            first_value = float(first_value_without_operator) - float(second_value)
-        elif first_value[-1] == "*":
-            first_value = float(first_value_without_operator) * float(second_value)
-        elif first_value[-1] == "/":
-            first_value = float(first_value_without_operator) / float(second_value)
+            if first_value[-1]=="+":
+                first_value = float(first_value_without_operator) + float(second_value)
+            elif first_value[-1] == "-":
+                first_value = float(first_value_without_operator) - float(second_value)
+            elif first_value[-1] == "*":
+                first_value = float(first_value_without_operator) * float(second_value)
+            elif first_value[-1] == "/":
+                first_value = float(first_value_without_operator) / float(second_value)
 
-        entry_box.delete(0,END)
-        entry_box_secondary.insert(END,second_value+"=  ")
-        entry_box.insert(0,str(first_value))
+            entry_box.delete(0,END)
+            entry_box_secondary.insert(END,second_value+"=")
+            entry_box.insert(0,str(first_value))
+            
+        if equal_amount>=1:
+            if first_value_operator=="+":
+                first_value =float(first_value)+float(second_value)
+            elif first_value_operator=="-":
+                first_value =float(first_value)-float(second_value)
+            elif first_value_operator=="*":
+                first_value =float(first_value)*float(second_value)
+            elif first_value_operator=="/":
+                first_value =float(first_value)/float(second_value)
+                
+            entry_box.delete(0,END)
+            entry_box.insert(END,first_value)
+    
+    equal_amount+=1
+
 
         
 
