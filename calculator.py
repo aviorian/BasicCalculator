@@ -118,11 +118,17 @@ def equal():
     
     equal_amount+=1
 
+def ignore_keyboard_input(event):
+    return "break"
+
 
         
 
 entry_box_secondary = CTkEntry(root,width=255,height=15,font=(None,15), corner_radius=5,text_color="white")
 entry_box = CTkEntry(root,width=255,height=50,font=(None,27), corner_radius=5,text_color="orange")
+entry_box.bind("<Key>",ignore_keyboard_input)
+entry_box_secondary.bind("<Key>",ignore_keyboard_input)
+
 button_1 = CTkButton(root,text="1",fg_color="#081717",hover_color="#202e2e" ,text_color="orange", width=80,height=70,command=lambda: numerical_button(1))
 button_2 = CTkButton(root,text="2",fg_color="#081717",hover_color="#202e2e" ,text_color="orange" ,width=80,height=70,command=lambda: numerical_button(2))
 button_3 = CTkButton(root,text="3",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,command=lambda: numerical_button(3))
