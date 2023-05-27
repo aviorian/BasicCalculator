@@ -115,7 +115,18 @@ def equal():
                 
             entry_box.delete(0,END)
             entry_box.insert(END,first_value)
-    
+            entry_box_secondary.insert(END,second_value+"=")
+            temp=entry_box_secondary.get().replace("=",first_value_operator)
+            entry_box_secondary.delete(0,END)
+            entry_box_secondary.insert(0,temp)
+            
+            if entry_box_secondary.get()[-1]==first_value_operator:
+                entry_list=list(entry_box_secondary.get())
+                entry_list[-1]="="
+                entry = "".join(entry_list)
+                entry_box_secondary.delete(0,END)
+                entry_box_secondary.insert(END,entry)
+
     equal_amount+=1
 
 def ignore_keyboard_input(event):
