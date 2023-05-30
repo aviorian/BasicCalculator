@@ -10,13 +10,18 @@ first_value = "0"
 second_value = "0"
 equal_amount = 0
 first_value_operator = ""
+previous_first_value_operator=""
+isEqualPressed = False
 
 
 
 def numerical_button(value:int):
     
+    global isEqualPressed
+
     if len(entry_box.get()) !=0 or value !=0:
         entry_box.insert(END,str(value))
+        isEqualPressed = False
         
 
 def clear():
@@ -37,20 +42,28 @@ def clear_all():
     first_value = "0"
     second_value ="0"
     equal_amount=0
+    
 
 
 def operator(sign:str):
 
     global first_value
     global second_value
+    global isEqualPressed
+    global first_value_operator
     
-    if entry_box.get() != "":
+    if entry_box.get() != "" :
         entry_box.insert(END,sign)
         
-        if first_value == "0":
+        if first_value == "0" or isEqualPressed:
             first_value = entry_box.get()
             entry_box_secondary.insert(END,first_value)
+            first_value_operator =first_value[-1]
+
+            
         else :
+            
+    
             first_value_without_operator = (first_value[0:-1])
             second_value = entry_box.get()
             second_value_without_operator =(second_value[0:-1])
@@ -70,6 +83,7 @@ def operator(sign:str):
             
 
     entry_box.delete(0,END)
+    isEqualPressed=False
     
 
 
@@ -79,15 +93,19 @@ def equal():
     global second_value
     global equal_amount
     global first_value_operator
-
+    global isEqualPressed
+    global previous_first_value_operator
 
     if entry_box.get() != "":
+
+        if not isEqualPressed:
+            second_value = entry_box.get()
         
+
         if equal_amount<1:
         
             first_value_without_operator = (first_value[0:-1])
             first_value_operator = first_value[-1]
-            second_value = entry_box.get()
             
 
             if first_value[-1]=="+":
@@ -103,22 +121,35 @@ def equal():
             entry_box_secondary.insert(END,second_value+"=")
             entry_box.insert(0,str(first_value))
             
+            
         if equal_amount>=1:
+
+            first_value_without_operator=first_value[0:-1]
+            
+
             if first_value_operator=="+":
-                first_value =float(first_value)+float(second_value)
+                first_value =float(first_value_without_operator)+float(second_value)
             elif first_value_operator=="-":
-                first_value =float(first_value)-float(second_value)
+                first_value =float(first_value_without_operator)-float(second_value)
             elif first_value_operator=="*":
-                first_value =float(first_value)*float(second_value)
+                first_value =float(first_value_without_operator)*float(second_value)
             elif first_value_operator=="/":
-                first_value =float(first_value)/float(second_value)
-                
+                first_value =float(first_value_without_operator)/float(second_value)
+
+      
             entry_box.delete(0,END)
-            entry_box.insert(END,first_value)
+            entry_box.insert(END,(first_value))
             entry_box_secondary.insert(END,second_value+"=")
-            temp=entry_box_secondary.get().replace("=",first_value_operator)
+            temp=entry_box_secondary.get()
+            
+            
+            if previous_first_value_operator == first_value_operator:
+                temp=entry_box_secondary.get().replace("=",first_value_operator)
+                
+            
             entry_box_secondary.delete(0,END)
             entry_box_secondary.insert(0,temp)
+            previous_first_value_operator = first_value_operator
             
             if entry_box_secondary.get()[-1]==first_value_operator:
                 entry_list=list(entry_box_secondary.get())
@@ -128,6 +159,8 @@ def equal():
                 entry_box_secondary.insert(END,entry)
 
     equal_amount+=1
+    isEqualPressed = True
+    first_value = str(first_value)
 
 
 def ignore_keyboard_input(event):
@@ -192,7 +225,7 @@ button_plus.place(x=260,y=305)
 button_equal.place(x=175,y=305)
 button_clear.place(x=260,y=5)
 button_clear_all.place(x=5,y=380)
-label.place(x=220,y=430)
+#label.place(x=220,y=430)
 
 root.mainloop()
 
