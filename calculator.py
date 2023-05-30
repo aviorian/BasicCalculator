@@ -129,40 +129,47 @@ def equal():
 
     equal_amount+=1
 
+
 def ignore_keyboard_input(event):
     return "break"
 
 
-        
+ 
+frame = CTkFrame(root,fg_color="#284F74",width=345,height=470)       
 
-entry_box_secondary = CTkEntry(root,width=255,height=15,font=(None,15), corner_radius=5,text_color="white")
-entry_box = CTkEntry(root,width=255,height=50,font=(None,27), corner_radius=5,text_color="orange")
+entry_box_secondary = CTkEntry(frame,width=255,height=15,font=(None,15), corner_radius=5,text_color="white",border_width=1,border_color="orange")
+entry_box = CTkEntry(frame,width=255,height=50,font=(None,27), corner_radius=5,text_color="orange",border_width=2,border_color="orange")
+scroll_bar = CTkScrollbar(frame,height=10,width=255,fg_color="orange",bg_color="#081717")
 entry_box.bind("<Key>",ignore_keyboard_input)
 entry_box_secondary.bind("<Key>",ignore_keyboard_input)
 
-button_1 = CTkButton(root,text="1",fg_color="#081717",hover_color="#202e2e" ,text_color="orange", width=80,height=70,command=lambda: numerical_button(1))
-button_2 = CTkButton(root,text="2",fg_color="#081717",hover_color="#202e2e" ,text_color="orange" ,width=80,height=70,command=lambda: numerical_button(2))
-button_3 = CTkButton(root,text="3",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,command=lambda: numerical_button(3))
-button_4 = CTkButton(root,text="4",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,command=lambda: numerical_button(4))
-button_5 = CTkButton(root,text="5",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,command=lambda: numerical_button(5))
-button_6 = CTkButton(root,text="6",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,command=lambda: numerical_button(6))
-button_7 = CTkButton(root,text="7",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,command=lambda: numerical_button(7))
-button_8 = CTkButton(root,text="8",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,command=lambda: numerical_button(8))
-button_9 = CTkButton(root,text="9",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,command=lambda: numerical_button(9))
-button_0 = CTkButton(root,text="0",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=165,height=70,command=lambda: numerical_button(0))
 
-button_plus=CTkButton(root,text="+",fg_color="#394545",text_color="yellow",hover_color="#635C6C", width=80,height=70,command=lambda: operator("+"))
-button_division=CTkButton(root,text="/",fg_color="#394545",text_color="yellow",hover_color="#635C6C",width=80,height=70,command=lambda: operator("/"))
-button_minus=CTkButton(root,text="-",fg_color="#394545",text_color="yellow",hover_color="#635C6C",width=80,height=70,command=lambda: operator("-"))
-button_multiple=CTkButton(root,text="x",fg_color="#394545",text_color="yellow",hover_color="#635C6C",width=80,height=70,command=lambda: operator("*"))
-button_equal=CTkButton(root,text="=",fg_color="#635C6C",text_color="yellow",hover_color="#394545",width=80,height=70,command=equal)
-button_clear=CTkButton(root,text="⌫",fg_color="#394545",text_color="yellow",hover_color="#635C6C",width=80,height=70,command=clear)
-button_clear_all=CTkButton(root,text="C",fg_color="#394545",text_color="yellow",hover_color="#635C6C",width=165,height=70,command=clear_all)
+
+button_1 = CTkButton(frame,text="1",fg_color="#081717",hover_color="#202e2e" ,text_color="orange", width=80,height=70,border_color="orange",border_width=1,corner_radius=100 ,command=lambda: numerical_button(1))
+button_2 = CTkButton(frame,text="2",fg_color="#081717",hover_color="#202e2e" ,text_color="orange" ,width=80,height=70,border_color="orange",border_width=1,corner_radius=100 ,command=lambda: numerical_button(2))
+button_3 = CTkButton(frame,text="3",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,border_color="orange",border_width=1,corner_radius=100 ,command=lambda: numerical_button(3))
+button_4 = CTkButton(frame,text="4",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,border_color="orange",border_width=1,corner_radius=100 ,command=lambda: numerical_button(4))
+button_5 = CTkButton(frame,text="5",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,border_color="orange",border_width=1,corner_radius=100 ,command=lambda: numerical_button(5))
+button_6 = CTkButton(frame,text="6",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,border_color="orange",border_width=1,corner_radius=100 ,command=lambda: numerical_button(6))
+button_7 = CTkButton(frame,text="7",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,border_color="orange",border_width=1,corner_radius=100 ,command=lambda: numerical_button(7))
+button_8 = CTkButton(frame,text="8",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,border_color="orange",border_width=1,corner_radius=100 ,command=lambda: numerical_button(8))
+button_9 = CTkButton(frame,text="9",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=80,height=70,border_color="orange",border_width=1,corner_radius=100 ,command=lambda: numerical_button(9))
+button_0 = CTkButton(frame,text="0",fg_color="#081717",hover_color="#202e2e" ,text_color="orange",width=165,height=70,border_color="orange",border_width=1,corner_radius=100 ,command=lambda: numerical_button(0))
+
+button_plus=CTkButton(frame,text="+",fg_color="#394545",text_color="orange",hover_color="#635C6C", width=80,height=70,command=lambda: operator("+"))
+button_division=CTkButton(frame,text="/",fg_color="#394545",text_color="orange",hover_color="#635C6C",width=80,height=70,command=lambda: operator("/"))
+button_minus=CTkButton(frame,text="-",fg_color="#394545",text_color="orange",hover_color="#635C6C",width=80,height=70,command=lambda: operator("-"))
+button_multiple=CTkButton(frame,text="x",fg_color="#394545",text_color="orange",hover_color="#635C6C",width=80,height=70,command=lambda: operator("*"))
+button_equal=CTkButton(frame,text="=",fg_color="#635C6C",text_color="orange",hover_color="#394545",width=80,height=70,command=equal)
+button_clear=CTkButton(frame,text="⌫",fg_color="#394545",text_color="orange",hover_color="#635C6C",width=80,height=70,command=clear)
+button_clear_all=CTkButton(frame,text="C",fg_color="#394545",text_color="orange",hover_color="#635C6C",width=165,height=70,command=clear_all)
 
 label = CTkLabel(root,text="Don't forget press 'C'" + "\n" + " after using '='.",text_color="orange",bg_color="#284F74")
 
+frame.pack()
 entry_box_secondary.place(x=0,y=0)
 entry_box.place(x=0,y=25)
+#scroll_bar.place(x=0,y=65)
 
 button_7.place(x=5,y=80)
 button_4.place(x=5,y=155)
